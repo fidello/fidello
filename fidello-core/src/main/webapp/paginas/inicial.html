@@ -1,0 +1,29 @@
+
+ 
+
+<div ng-controller="usuarioController as vm" >
+<h1>UHUUUUU</h1>
+
+
+{{vm.usuarios}}
+<form ng-submit="vm.salvar()" >
+	<label for="documento">Documento</label>
+	<input type="text" name="documento" ng-model ="vm.usuario.documento"/>
+
+	<label for="email">E-mail</label>
+	<input type="email" name="email"  ng-model ="vm.usuario.email"/>
+
+	<label for="nome">Nome</label>
+	<input type="text" name="nome"  ng-model ="vm.usuario.nome"/>
+
+	<label for="senha">Senha</label>
+	<input type="password" name="senha"  ng-model ="vm.usuario.senha"/>
+
+	<input type="submit" value="Salvar"/>
+
+</form>
+
+
+
+
+</div> 
