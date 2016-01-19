@@ -30,17 +30,12 @@
     	   
         }
         		 
-        function listarLojasPorPessoaid(idPessoa){
-        	 
-        	return listarLojaResource.query({ id: idPessoa }).$promise.then(function(resposta){
-        		console.log("respo");
-        		console.log(resposta);
+        function listarLojasPorPessoaid(idPessoa){        	 
+        	return listarLojaResource.query({ id: idPessoa }).$promise.then(function(resposta){        	
                 return resposta;
      		}), function(error){                                
                 return error;
-            };
-        	
-        	
+            };        	        	
         }
  	
 	}

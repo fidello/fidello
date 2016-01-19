@@ -9,16 +9,13 @@ function lojaController(lojaService, $mdToast, $state, CidadesEstadosFactory, $l
 	vm.loja = {};
 	
 	vm.$storage = $localStorage;
-	
-	var teste = lojaService.listarLojasPorPessoaid(vm.$storage.currentUser.idPessoa);
-	
+		
 	CidadesEstadosFactory.getEstados().then(function(reposta) {
 		vm.estados = reposta.data.estados;
 
 	});
 
 	vm.preencherCidades = function() {
-
 		vm.states = JSON.parse(vm.estadoSelecionado).cidades;
 		vm.selectedItem = null;
 		vm.searchText = null;
@@ -33,6 +30,7 @@ function lojaController(lojaService, $mdToast, $state, CidadesEstadosFactory, $l
 
 		return results;
 	}
+    
 	function createFilterFor(query) {
 		var lowercaseQuery = angular.lowercase(query);
 		return function filterFn(state) {
@@ -48,12 +46,9 @@ function lojaController(lojaService, $mdToast, $state, CidadesEstadosFactory, $l
 	// METODOS PUBLICOS
 	function cadastrarLoja() {
 		vm.loja.endereco.estado = JSON.parse(vm.estadoSelecionado).sigla;
-		console.log('loja');
-		console.log(vm.loja);
+				
+		vm.loja.idPessoa = vm.$storage.currentUser.idPessoa;
 		
-		vm.loja.idPessoa = 11;
-		
-
 		lojaService.cadastrarloja(vm.loja).then(function(resposta) {
 			__mostrarMensagem("O cadastro foi realizado com sucesso");
 		}, function(error) {

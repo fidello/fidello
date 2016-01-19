@@ -2,18 +2,13 @@
 
 angular.module('fidello').controller("usuarioController",usuarioController); 
 
-usuarioController.$inject = ['usuarioService','$mdToast','$state','$localStorage','UsuarioFactory'];
+usuarioController.$inject = ['usuarioService','$mdToast','$state','$localStorage'];
 
-function usuarioController(usuarioService,$mdToast,$state, $localStorage,  UsuarioFactory){
-
- 
-    
+function usuarioController(usuarioService,$mdToast,$state, $localStorage){
+   
     var vm = this;   
  
     vm.$storage = $localStorage;
-    
-    console.log('user');
-	console.log(vm.$storage.currentUser);
 
     vm.usuario = {};
     
@@ -29,10 +24,6 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage,  Usuar
     
     vm.mudarInputCadastro = mudarInputCadastro;
 
-   
-    vm.currentUser = UsuarioFactory.getCurrentUser();
-    console.log("user");
-    console.log(vm.currentUser);
     vm.tiposUsuarioLogin = [
       {
     	  codigoTipoUsuario:  1,
@@ -61,11 +52,8 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage,  Usuar
       },
       ];
     
-    
-    
-  
-    function mudarInput(){
-    	    	
+      
+    function mudarInput(){    	    	
     	vm.textoTipoUsuario = vm.tiposUsuarioLogin[vm.login.tipoUsuario-1].textoTipoUsuario;
     }
     
@@ -76,18 +64,9 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage,  Usuar
     function send(pagina){
     	$state.go(pagina);
     }
-//    
-//    usuarioService.cadastrarLoja({email:"Gomes", documento:"123"}).then(function(resposta){            
-//        __mostrarMensagem("Loja Sim");            
-//    },function(error){            
-//        __mostrarMensagem("Loja não");
-//    });    
-
-
+ 
     // METODOS PUBLICOS
-    function cadastrarUsuario(){
-    	console.log(vm.usuario);
-    	
+    function cadastrarUsuario(){    	    	
         usuarioService.cadastrarUsuario(vm.usuario).then(function(resposta){            
             __mostrarMensagem("O cadastro foi realizado com sucesso");            
         },function(error){            
@@ -96,24 +75,11 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage,  Usuar
     }
     
     function entrar(){
-    	
-    	
-    	
-        usuarioService.login(vm.login).then(function(resposta){        
-            
-        	console.log(resposta);
-
-        	UsuarioFactory.login(resposta);
-        	
-        	
-        	vm.$storage.currentUser = resposta;
-        	
-        	
-        	console.log("Resposta Factory");
-        	console.log(vm.$storage.currentUser);
+    		
+        usuarioService.login(vm.login).then(function(resposta){                            
+        	vm.$storage.currentUser = resposta;        	        	        	
             __mostrarMensagem("Seja Bem vindo");
-        },function(error){            
-        		console.log(error);
+        },function(error){                    		
             __mostrarMensagem(error.data.message);
         });   
     	

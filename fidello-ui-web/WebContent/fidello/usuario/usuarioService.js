@@ -47,9 +47,6 @@
 				method : 'GET',
 				url : url
 			}).then(function(resposta) {
-
-				console.log('resposta');
-				console.log(resposta);
 				return resposta.data;
 			}, function(error) {
 				return error;

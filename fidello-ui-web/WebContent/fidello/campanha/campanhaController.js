@@ -1,10 +1,12 @@
 angular.module('fidello').controller("campanhaController", campanhaController);
 
-campanhaController.$inject = [ 'campanhaService', '$mdToast', '$state' ];
+campanhaController.$inject = [ 'campanhaService', '$mdToast', '$state', '$localStorage'];
 
-function campanhaController(campanhaService, $mdToast, $state) {
+function campanhaController(campanhaService, $mdToast, $state,$localStorage) {
 
 	var vm = this;
+
+    vm.$storage = $localStorage;
 
 	vm.tiposValidade = [ {
 		codigoTipoValidade : 1,
@@ -33,9 +35,7 @@ function campanhaController(campanhaService, $mdToast, $state) {
 	// METODOS PUBLICOS
 	         
 	function cadastrarCampanha() {
-		vm.campanha.idPessoa = 11;
-console.log('campanhar');
-		console.log(vm.campanha);
+		vm.campanha.idPessoa = vm.$storage.currentUser.idPessoa;		
 		campanhaService.cadastrarCampanha(vm.campanha).then(function(resposta) {
 			__mostrarMensagem("O cadastro foi realizado com sucesso");
 		}, function(error) {
