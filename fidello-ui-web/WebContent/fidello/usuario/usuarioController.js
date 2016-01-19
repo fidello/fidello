@@ -18,7 +18,7 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage){
     
     vm.entrar = entrar;
     
-    vm.send = send;
+    vm.navegar = navegar;
           
     vm.mudarInput = mudarInput;
     
@@ -53,17 +53,7 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage){
       ];
     
       
-    function mudarInput(){    	    	
-    	vm.textoTipoUsuario = vm.tiposUsuarioLogin[vm.login.tipoUsuario-1].textoTipoUsuario;
-    }
-    
-    function mudarInputCadastro(){
-    	vm.textoTipoUsuario = vm.tiposUsuarioCadastro[vm.usuario.tipoUsuario-1].textoTipoUsuario;
-    }
-    
-    function send(pagina){
-    	$state.go(pagina);
-    }
+ 
  
     // METODOS PUBLICOS
     function cadastrarUsuario(){    	    	
@@ -83,6 +73,18 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage){
             __mostrarMensagem(error.data.message);
         });   
     	
+    }
+    
+     function mudarInput(){    	    	
+    	vm.textoTipoUsuario = vm.tiposUsuarioLogin[vm.login.tipoUsuario-1].textoTipoUsuario;
+    }
+    
+    function mudarInputCadastro(){
+    	vm.textoTipoUsuario = vm.tiposUsuarioCadastro[vm.usuario.tipoUsuario-1].textoTipoUsuario;
+    }
+    
+    function navegar(pagina){
+    	$state.go(pagina);
     }
     
     // METODOS PRIVADOS

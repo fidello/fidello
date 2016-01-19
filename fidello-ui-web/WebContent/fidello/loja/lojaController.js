@@ -15,33 +15,9 @@ function lojaController(lojaService, $mdToast, $state, CidadesEstadosFactory, $l
 
 	});
 
-	vm.preencherCidades = function() {
-		vm.states = JSON.parse(vm.estadoSelecionado).cidades;
-		vm.selectedItem = null;
-		vm.searchText = null;
-		vm.querySearch = querySearch;
-	};
+	vm.preencherCidades = preencherCidades
 
 	vm.cadastrarLoja = cadastrarLoja;
-
-	function querySearch(query) {
-
-		var results = query ? vm.states.filter(createFilterFor(query)) : [];
-
-		return results;
-	}
-    
-	function createFilterFor(query) {
-		var lowercaseQuery = angular.lowercase(query);
-		return function filterFn(state) {
-			state = angular.lowercase(state);
-			return (state.indexOf(lowercaseQuery) === 0);
-		};
-	}
-
-	function send(pagina) {
-		$state.go(pagina);
-	}
 
 	// METODOS PUBLICOS
 	function cadastrarLoja() {
@@ -55,9 +31,33 @@ function lojaController(lojaService, $mdToast, $state, CidadesEstadosFactory, $l
 			__mostrarMensagem("Não foi possivel realizar o cadastro. " + error.data.message);
 		});
 	}
+    
+    function preencherCidades() {
+		vm.cidades = JSON.parse(vm.estadoSelecionado).cidades;
+		vm.selectedItem = null;
+		vm.searchText = null;
+		vm.querySearch = __querySearch;
+	};
 
 	// METODOS PRIVADOS
 	function __mostrarMensagem(mensagem) {
 		$mdToast.show($mdToast.simple().content(mensagem).position("top right").hideDelay(3000));
 	}
+    
+    
+	function __querySearch(query) {
+
+		var results = query ? vm.cidades.filter(__createFilterFor(query)) : [];
+
+		return results;
+	}
+    
+	function __createFilterFor(query) {
+		var lowercaseQuery = angular.lowercase(query);
+		return function filterFn(cidade) {
+			cidade = angular.lowercase(cidade);
+			return (cidade.indexOf(lowercaseQuery) === 0);
+		};
+	}
+    
 }

@@ -22,14 +22,9 @@ function campanhaController(campanhaService, $mdToast, $state,$localStorage) {
 
 	];
 
-	
 	vm.campanha = {};
 
 	vm.cadastrarCampanha = cadastrarCampanha;
-	
-	function send(pagina) {
-		$state.go(pagina);
-	}
 
 	// METODOS PUBLICOS
 	         
