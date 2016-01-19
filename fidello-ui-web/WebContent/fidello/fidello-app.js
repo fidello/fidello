@@ -12,6 +12,8 @@
             }).
             state('cadastroUsuario', {
             	url:"/cadastroUsuario",
+             	controller: "usuarioController",
+    		 	controllerAs: 'vm',
                 templateUrl : 'paginas/cadastroUsuario.tpl.html'	
                 	
             }).state('cadastroLoja', {
@@ -28,9 +30,10 @@
                 templateUrl : 'paginas/cadastroCampanha.tpl.html'			
             }).state('pontuarCliente', {
             	url:"/pontuarCliente",
-                templateUrl : 'paginas/pontuarCliente.tpl.html',
                 controller: "pontuarController",
-                controllerAs: "vm"
+                controllerAs: "vm",
+                templateUrl : 'paginas/pontuarCliente.tpl.html',
+             
             });
 
             var customBlueMap = $mdThemingProvider.extendPalette('light-blue', {

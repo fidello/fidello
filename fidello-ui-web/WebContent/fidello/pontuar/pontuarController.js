@@ -20,8 +20,7 @@ function pontuarController(pontuarService, $mdToast, $state, usuarioService,$mdD
 	
 	 vm.showAdvanced = function(ev) {
 		    $mdDialog.show({
-		      controller: DialogController,
-		      
+		      controller: DialogController,		      
 		      templateUrl: 'paginas/pontuarCliente-dialog.tpl.html',
 		      parent: angular.element(document.body),
 		      targetEvent: ev,
@@ -35,12 +34,7 @@ function pontuarController(pontuarService, $mdToast, $state, usuarioService,$mdD
 		    });
 		};
 
-		vm.answer = function(answer) {	
-		    $mdDialog.hide(answer);
-		  };
-
-
-	// METODOS PRIVADOS
+    // METODOS PRIVADOS
 	function __mostrarMensagem(mensagem) {
 		$mdToast.show($mdToast.simple().content(mensagem).position("top right").hideDelay(3000));
 	}
@@ -57,3 +51,4 @@ function DialogController($scope, $mdDialog) {
 	    $mdDialog.hide(answer);
 	  };
 	}
+}

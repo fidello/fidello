@@ -9,12 +9,16 @@
 
         <md-list  ng-cloak>
 
-            <md-list-item ng-click="vm.navegar(item.link)" ng-repeat="item in vm.menuLateral">
+            <md-list-item ng-click="vm.navegar(item.link)" ng-repeat="item in vm.menuLateral" ng-if="vm.$storage.currentUser !== undefined">
                 <div class="inset">
                     <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                 </div>
 
                 <p> {{ item.title }} </p>
+            </md-list-item>
+            
+            <md-list-item ng-if="vm.$storage.currentUser === undefined">                
+                <p> Ainda sem menu antes de logar </p>
             </md-list-item>
 
           <md-divider></md-divider>

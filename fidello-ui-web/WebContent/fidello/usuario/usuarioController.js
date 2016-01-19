@@ -78,7 +78,7 @@ function usuarioController(usuarioService,$mdToast,$state, $localStorage){
     		
         usuarioService.login(vm.login).then(function(resposta){                            
         	vm.$storage.currentUser = resposta;        	        	        	
-            __mostrarMensagem("Seja Bem vindo");
+            __mostrarMensagem("Seja Bem vindo " + resposta.nome);
         },function(error){                    		
             __mostrarMensagem(error.data.message);
         });   

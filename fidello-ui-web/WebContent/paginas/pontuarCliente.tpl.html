@@ -2,11 +2,9 @@
     <md-list>
       <md-subheader class="md-no-sticky">Clientes</md-subheader>
       <md-list-item ng-click="vm.showAdvanced($event)" class="md-3-line" ng-repeat="cliente in vm.clientes">
-        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+        <img ng-src="" class="md-avatar" alt="" />
         <div class="md-list-item-text" layout="column">
-          <h3>{{ cliente.nome }}</h3>
-          <h4>{{ item.what }}</h4>
-          <p>{{ item.notes }}</p>
+          <h3>{{ cliente.nome }}</h3>    
         </div>
       </md-list-item>
       <md-divider ></md-divider>         

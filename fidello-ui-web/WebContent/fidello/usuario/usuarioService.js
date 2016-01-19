@@ -6,22 +6,22 @@
 
 	function usuarioService($resource, $timeout, $http) {
 
-		var cadastroResource = $resource('http://localhost:8080/fidello-core/rest/usuario/', null, {
+		var cadastroResource = $resource('http://www.fidello.com.br/fidello-core/rest/usuario/', null, {
 			'save' : {
 				method : 'POST'
 			}
 		});
-		var loginResource = $resource('http://localhost:8080/fidello-core/rest/usuario/login', null, {
+		var loginResource = $resource('http://www.fidello.com.br/fidello-core/rest/usuario/login', null, {
 			'save' : {
 				method : 'POST'
 			}
 		});
-		var buscarPessoasResource = $resource('http://localhost:8080/fidello-core/rest/usuario/pessoas', null, {
+		var buscarPessoasResource = $resource('http://www.fidello.com.br/fidello-core/rest/usuario/pessoas', null, {
 			'save' : {
 				method : 'POST'
 			}
 		});
-		var url = 'http://localhost:8080/fidello-core/rest/usuario/pessoas';
+		var url = 'http://www.fidello.com.br/fidello-core/rest/usuario/pessoas';
 
 		return {
 			cadastrarUsuario : cadastrarUsuario,
