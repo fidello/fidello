@@ -6,7 +6,7 @@
 
 	function campanhaService($resource, $timeout, $http) {
 
-		var campanhaResource = $resource('http://localhost:8080/fidello-core/rest/campanha', null, {
+		var campanhaResource = $resource('http://www.fidello.com.br/fidello-core/rest/campanha', null, {
 			'save' : {
 				method : 'POST'
 			}

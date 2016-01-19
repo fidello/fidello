@@ -18,7 +18,6 @@ function campanhaController(campanhaService, $mdToast, $state,$localStorage) {
 	}, {
 		codigoTipoValidade : 3,
 		textoTipoValidade : "anos"
-
 	}
 
 	];

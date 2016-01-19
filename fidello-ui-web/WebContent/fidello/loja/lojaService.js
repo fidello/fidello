@@ -8,8 +8,8 @@
     
     function lojaService($resource) {
     	
-    	var listarLojaResource = $resource('http://localhost:8080/fidello-core/rest/loja/lojas/:id',{id:'@id'},{'query':  {method:'GET', isArray:true}});
-        var lojaResource = $resource('http://localhost:8080/fidello-core/rest/loja',null,{'save': { method:'POST'}});
+    	var listarLojaResource = $resource('http://www.fidello.com.br/fidello-core/rest/loja/lojas/:id',{id:'@id'},{'query':  {method:'GET', isArray:true}});
+        var lojaResource = $resource('http://www.fidello.com.br/fidello-core/rest/loja',null,{'save': { method:'POST'}});
         
         
     	return {    		
