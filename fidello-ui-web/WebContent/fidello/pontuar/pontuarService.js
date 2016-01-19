@@ -6,7 +6,7 @@
 
 	function pontuarService($resource, $timeout, $http) {
 
-		var pontuarResource = $resource('http://localhost:8080/fidello-core/rest/pontuar', null, {
+		var pontuarResource = $resource('http://www.fidello.com.br/fidello-core/rest/pontuar', null, {
 			'save' : {
 				method : 'POST'
 			}
