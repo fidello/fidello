@@ -14,14 +14,15 @@ import br.com.fidello.model.Email;
 import br.com.fidello.model.Pessoa;
 import br.com.fidello.util.Utils;
 
-
 public class PessoaDAO extends GenericDAO<Pessoa> {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Inject private Email email;
-	@Inject private EmailDAO emailDAO;
-	
+
+	@Inject
+	private Email email;
+	@Inject
+	private EmailDAO emailDAO;
+
 	public PessoaDAO() {
 		super(Pessoa.class);
 	}
@@ -38,7 +39,7 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 		return pessoa;
 
 	}
-	
+
 	public Pessoa detalharPessoaPorId(Integer pessoaId) throws Exception {
 
 		return (Pessoa) getSession().createCriteria(Pessoa.class)
@@ -58,38 +59,64 @@ public class PessoaDAO extends GenericDAO<Pessoa> {
 
 	}
 
-	public Pessoa detalharPessoaPorUsuarioIdentificacao(Integer usuarioIdentificacaoTipo, String numeroSRF) throws Exception {
+	public Pessoa detalharPessoaPorUsuarioIdentificacao(
+			Integer usuarioIdentificacaoTipo, String numeroSRF)
+			throws Exception {
 
 		numeroSRF = Utils.somenteNumeros(numeroSRF);
 
+		if (numeroSRF == null || numeroSRF.isEmpty()) {
+			if (usuarioIdentificacaoTipo.equals(DocumentoTipoEnum.CPF
+					.getCodigo()))
+				throw new Exception("Por favor informe um número de CPF");
+			else
+				throw new Exception("Por favor informe um número de CNPJ");
+		}
 		return (Pessoa) getSession()
 				.createCriteria(Pessoa.class)
 				.add(Restrictions.eq("documentoTipo", usuarioIdentificacaoTipo))
 				.add(Restrictions.eq("numeroSRF", numeroSRF)).uniqueResult();
 	}
 
+	public Pessoa detalharPessoaPorEmail(Collection<Email> emails)
+			throws Exception {
+		// String sql = "select * from pessoa where pessoa_id in "
+		// + "(select pessoa_id from email where email = \"" + email + "\" )";
+		// Query query =
+		// getSession().createSQLQuery(sql).addEntity(Pessoa.class);
+		// return (Pessoa) query.uniqueResult();
+		// email = emailDAO.detalharEmail(strEmail);
+		//
+		// return this.detalharPessoaPorId(email.getPessoa().getId());
 
-	public Pessoa detalharPessoaPorEmail(Collection<Email> emails) throws Exception {
-//		String sql = "select * from pessoa where pessoa_id in "
-//				+ "(select pessoa_id from email where email = \"" + email + "\" )";
-//		Query query = getSession().createSQLQuery(sql).addEntity(Pessoa.class);
-//		return (Pessoa) query.uniqueResult();
-//		email = emailDAO.detalharEmail(strEmail);
-//		
-//		return this.detalharPessoaPorId(email.getPessoa().getId());
-		
 		List<String> emails_str = new ArrayList<String>();
 		for (Email email2 : emails) {
 			emails_str.add(email2.getEmail());
 		}
-		
-		return (Pessoa) getSession()
-							.createCriteria(Email.class)
-							.add(Restrictions.in("email", emails_str))
-							.uniqueResult();
-				
+
+		return (Pessoa) getSession().createCriteria(Email.class)
+				.add(Restrictions.in("email", emails_str)).uniqueResult();
+
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Pessoa> buscarPessoasFisicas()
+			throws Exception {
+		// String sql = "select * from pessoa where pessoa_id in "
+		// + "(select pessoa_id from email where email = \"" + email + "\" )";
+		// Query query =
+		// getSession().createSQLQuery(sql).addEntity(Pessoa.class);
+		// return (Pessoa) query.uniqueResult();
+		// email = emailDAO.detalharEmail(strEmail);
+		//
+		// return this.detalharPessoaPorId(email.getPessoa().getId());
+
+		
+
+		return (List<Pessoa>) getSession().createCriteria(Pessoa.class)
+				.add(Restrictions.eq("documentoTipo", 1)).list();
+
+	}
 	public boolean isNumeroSRFCadastrado(String numeroSRF,
 			DocumentoTipoEnum documentoTipo) {
 

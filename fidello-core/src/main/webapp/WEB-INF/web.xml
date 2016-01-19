@@ -4,6 +4,8 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  
+  
   <servlet>
     <servlet-name>RestServlet</servlet-name>
     <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
@@ -38,6 +40,6 @@
   </filter>
   <filter-mapping>
     <filter-name>CORSFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/rest/*</url-pattern>
   </filter-mapping>
 </web-app>

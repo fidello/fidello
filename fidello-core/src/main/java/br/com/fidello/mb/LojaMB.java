@@ -143,7 +143,7 @@ public class LojaMB extends AbstractMB implements Serializable {
 			
 			loja.getPessoa().setDocumentoTipo(loja.getPessoa().getIdentificacaoTipo());
 		
-			loja = lojaFacade.cadastrarLoja(loja);
+		//	loja = lojaFacade.cadastrarLoja(loja);
 			
 			displayInfoMessageToUser("Cadastro efetuado com sucesso!", loja.getNomeFantasia());
 			

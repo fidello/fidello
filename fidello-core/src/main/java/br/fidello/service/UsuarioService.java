@@ -1,5 +1,7 @@
 package br.fidello.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -8,8 +10,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+
+import br.com.fidello.delegate.PessoaDelegate;
 import br.com.fidello.delegate.UsuarioDelegate;
 import br.com.fidello.json.LoginVO;
+import br.com.fidello.json.PessoaVO;
 import br.com.fidello.json.UsuarioVO;
 
 @Path("/usuario")
@@ -20,6 +26,9 @@ public class UsuarioService {
 	UsuarioDelegate usuarioDelegate;
 
 	
+	@Inject
+	PessoaDelegate pessoaDelegate;
+
 	@GET
 	@Path("/")
 	public String teste() {
@@ -52,16 +61,40 @@ public class UsuarioService {
 	}
 	
 
+	@GET
+	@Path("/pessoas")
+	public Response buscarPessoasFisicas() {
+		List<PessoaVO> pessoas = null;
+		try {
+			
+			
+			pessoas = pessoaDelegate.buscarPessoasFisicas();
+			return Response.status(200).entity(pessoas).build();
+		        			
+		} catch (Exception e) {
+			return Response.serverError().entity(e).build();
+
+		}
+
+	}
+	
+
+
 	@POST
 	@Path("/")
 	public Response salvarUsuario(UsuarioVO usuarioVO) {
 
 		try {
+			
+			
+			
 			usuarioDelegate.cadastrarUsuario(usuarioVO);
+
 			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers", "X-Requested-With")
+					.header("Access-Control-Allow-Origin", "*")					
 					.entity("").build();
+			
+			
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();
 
@@ -75,14 +108,13 @@ public class UsuarioService {
 
 		try {
 			UsuarioVO usuarioVO = usuarioDelegate.loginUsuario(login);
-			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers", "X-Requested-With")
-					.entity(usuarioVO).build();
+			return Response.status(200).entity(usuarioVO).build();
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();
 
 		}
 
 	}
+	
+	
 }

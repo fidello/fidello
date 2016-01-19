@@ -1,6 +1,5 @@
 package br.com.fidello.json;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
@@ -16,6 +15,8 @@ public class LoginVO {
 	
 	private String senha;
 	
+	private Integer tipoUsuario;
+
 	
 	public LoginVO() {
 		super();
@@ -47,6 +48,16 @@ public class LoginVO {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+
+	public Integer getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+
+	public void setTipoUsuario(Integer tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 

@@ -30,7 +30,8 @@ public class PontoDAO extends GenericDAO<Ponto> {
 		ScrollableResults result = query.scroll();
 		if (result.first())
 			ponto.setId(((BigInteger) result.get(0)).intValue());
-
+		else
+			ponto.setId(1);
 		ponto.setCriado(Utils.getDataHoraAtual());
 		ponto.setModificado(Utils.getDataHoraAtual());
 		
@@ -49,6 +50,15 @@ public class PontoDAO extends GenericDAO<Ponto> {
 				.add(Restrictions.eq("pessoa.id", pessoa.getId()))
 				.add(Restrictions.ge("data", (Date)formatter.parse(dataInicio)))
 				.add(Restrictions.le("data", (Date)formatter.parse(dataFim))).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<Ponto> detalharPontosPorPessoa(Pessoa pessoa) throws Exception {
+		
+  
+
+		return getSession().createCriteria(Ponto.class)
+				.add(Restrictions.eq("pessoa.id", pessoa.getId())).list();
 	}
 
 	

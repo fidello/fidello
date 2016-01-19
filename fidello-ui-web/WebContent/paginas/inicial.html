@@ -1,0 +1,5 @@
+
+<div ng-include="'paginas/login.html'" ng-if="vm.$storage.currentUser === undefined"></div>
+<div ng-if="vm.$storage.currentUser !== undefined">
+<h1>Bem vindo</h1>
+</div>

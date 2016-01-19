@@ -17,7 +17,7 @@ public class LojaDAO extends GenericDAO<Loja> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Collection<Loja> detalharLojaPorPessoaId(Integer pessoaId) throws Exception {
+	public Collection<Loja> listarLojasPorPessoaId(Integer pessoaId) throws Exception {
 
 		return getSession().createCriteria(Loja.class)
         	.add(Restrictions.eq("pessoa.id", pessoaId))
@@ -31,6 +31,8 @@ public class LojaDAO extends GenericDAO<Loja> {
 		return getSession().createCriteria(Loja.class).list();
 
 	}
+	
+	
 	
 	public Loja cadastrarLoja(Loja loja) throws Exception {
 		

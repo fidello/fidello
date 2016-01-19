@@ -36,6 +36,9 @@ public class UsuarioFacade extends AbstractFacade implements Serializable{
 					usuarioRetorno = this.detalharUsuarioPorDocumento(usuario.getPessoa().getIdentificacaoTipo(), usuario.getPessoa().getNumeroSRF());
 				}
 				
+				if(usuarioRetorno == null)
+					throw new Exception("O login ou senha estão incorretos");
+				
 				if (autenticarUsuario(usuarioRetorno.getId(), usuario.getSenha()) == false)
 					return null;
 				

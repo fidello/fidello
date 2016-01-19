@@ -9,22 +9,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author guilh
  *
  */
-public class UsuarioVO{
-	
-	private String nome; 
-	
+public class UsuarioVO {
+
+	private String nome;
+
 	private String documento;
-	
+
 	private String email;
-	
+
 	private String senha;
+
+	private Integer tipoUsuario;
 	
+	private Integer idPessoa;
+
+	private Integer idLoja;
 	
+	private Integer idCampanha;
 	public UsuarioVO() {
 		super();
-		
-	}
 
+	}
 
 	public UsuarioVO(String nome, String documento, String email, String senha) {
 		super();
@@ -67,15 +72,43 @@ public class UsuarioVO{
 	}
 
 
+	public Integer getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(Integer tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
 	@Override
 	public String toString() {
 		return "UsuarioJson [nome=" + nome + ", documento=" + documento
 				+ ", email=" + email + ", senha=" + senha + "]";
 	}
-	
-	
-	
-	
-	
+
+	public Integer getIdPessoa() {
+		return idPessoa;
+	}
+
+	public void setIdPessoa(Integer idPessoa) {
+		this.idPessoa = idPessoa;
+	}
+
+	public Integer getIdLoja() {
+		return idLoja;
+	}
+
+	public void setIdLoja(Integer idLoja) {
+		this.idLoja = idLoja;
+	}
+
+	public Integer getIdCampanha() {
+		return idCampanha;
+	}
+
+	public void setIdCampanha(Integer idCampanha) {
+		this.idCampanha = idCampanha;
+	}
+
 	
 }

@@ -2,9 +2,10 @@ package br.com.fidello.dao;
  
 
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.ejb.criteria.expression.function.CurrentDateFunction;
 
+import br.com.fidello.enums.UsuarioTipoEnum;
 import br.com.fidello.model.Campanha;
+import br.com.fidello.util.Utils;
  
 public class CampanhaDAO extends GenericDAO<Campanha> {
 	private static final long serialVersionUID = 1L;
@@ -24,5 +25,16 @@ public class CampanhaDAO extends GenericDAO<Campanha> {
 						.add(Restrictions.gt("dataFim", new java.sql.Date(System.currentTimeMillis())))))
 				.uniqueResult();
 				
+	}
+	
+	public Campanha cadastrarCampanha(Campanha campanha) throws Exception {
+	
+		campanha.setCriado(Utils.getDataHoraAtual());
+		campanha.setModificado(Utils.getDataHoraAtual());		
+		campanha.setDataInicio(Utils.getDataHoraAtual());
+		getSession().persist(campanha);
+		
+		return campanha;
+		
 	}
 }

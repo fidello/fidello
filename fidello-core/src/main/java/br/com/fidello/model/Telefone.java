@@ -15,6 +15,7 @@ import javax.persistence.Table;
 public class Telefone implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	public Telefone(){}
 	public Telefone(String ddi, String ddd, String numero, Integer telefoneTipo, Boolean preferencial) {
 		super();
 		this.ddi = ddi;

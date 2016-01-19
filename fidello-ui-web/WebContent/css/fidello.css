@@ -1,0 +1,59 @@
+md-content.md-default-theme {
+	background-color: #eee;
+}
+
+md-card {
+	background-color: #fff;
+}
+
+md-card h2:first-of-type {
+	margin-top: 0;
+}
+
+
+h2 {
+	font-weight: 400;
+}
+
+.md-toolbar-tools-bottom {
+	font-size: small;
+}
+
+
+
+md-sidenav {
+	fill: #737373;
+}
+
+md-sidenav ng-md-icon {
+	position: relative;
+	top: 5px;
+}
+
+.user-avatar {
+	border-radius: 99%;
+}
+
+.inputdemoIcons .inputIconDemo {
+	min-height: 48px;
+}
+
+.inputdemoIcons md-input-container:not (.md-input-invalid ) >md-icon.email
+	{
+	color: green;
+}
+
+.inputdemoIcons md-input-container:not (.md-input-invalid ) >md-icon.name
+	{
+	color: dodgerblue;
+}
+
+.inputdemoIcons md-input-container.md-input-invalid>md-icon.email,
+	.inputdemoIcons md-input-container.md-input-invalid>md-icon.name {
+	color: red;
+}
+
+.md-button{
+	text-transform: none !important;
+	
+} 

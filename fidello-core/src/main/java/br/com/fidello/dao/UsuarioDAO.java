@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
 
+import br.com.fidello.enums.DocumentoTipoEnum;
 import br.com.fidello.enums.UsuarioTipoEnum;
 import br.com.fidello.model.Email;
 import br.com.fidello.model.Pessoa;
@@ -50,7 +51,7 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 		senha = Utils.convertStringToMd5(senha);
 		
 		Usuario usuario = (Usuario) getSession().createCriteria(Usuario.class)
-				.add(Restrictions.eq("pessoa.id", pessoaId))
+				.add(Restrictions.eq("id", pessoaId))
 	        	.add(Restrictions.eq("senha", senha))
 	        	.uniqueResult();
 		
@@ -62,16 +63,26 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 	}
 	
 	
-	public Usuario buscarUsuarioPorNumeroSRF(Integer documentoTipo, String NumeroSRF) throws Exception {
+	public Usuario buscarUsuarioPorNumeroSRF(Integer documentoTipo, String numeroSRF) throws Exception {
 
-		NumeroSRF = Utils.somenteNumeros(NumeroSRF);
 		
+			
+		numeroSRF = Utils.somenteNumeros(numeroSRF);
+		
+		if (numeroSRF == null || numeroSRF.isEmpty()) {
+			if (documentoTipo.equals(DocumentoTipoEnum.CPF
+					.getCodigo()))
+				throw new Exception("Por favor informe um número de CPF");
+			else
+				throw new Exception("Por favor informe um número de CNPJ");
+		}
 		return (Usuario) getSession()
 				.createCriteria(Usuario.class)
 					.createCriteria("pessoa")
-						.add(Restrictions.eq("numeroSRF", NumeroSRF))
+						.add(Restrictions.eq("numeroSRF", numeroSRF))
 						.add(Restrictions.eq("documentoTipo", documentoTipo))
 				.uniqueResult();
+		
 	}
 	
 	public Usuario buscarUsuarioPorEmail(Collection<Email> emails) {
@@ -81,10 +92,17 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 			emails_str.add(email2.getEmail());
 		}
 		
-		return (Usuario) getSession()
+		Email email = (Email) getSession()
 				.createCriteria(Email.class)
 				.add(Restrictions.in("email", emails_str))
 				.uniqueResult();
+		
+		
+		Usuario usuario = email.getPessoa().getUsuario();
+		usuario.setPessoa(email.getPessoa());
+		usuario.getPessoa().addEmail(email);
+		
+		return usuario;
 	}
 //		Map<String, Object> parameters = new HashMap<String, Object>();
 //		parameters.put("email", email);
