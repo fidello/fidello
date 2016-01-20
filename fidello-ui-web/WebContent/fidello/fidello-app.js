@@ -62,6 +62,7 @@
             .iconSet('communication', 'img/icons/sets/communication-icons.svg', 24)
             .defaultIconSet('img/icons/sets/core-icons.svg', 24);
     }).value('Contantes', {
-        urlResource: 'http://localhost:8080'
+        urlResource: 'http://www.fidello.com.br'
+        //urlResource: 'http://localhost:8080'
 
     });
