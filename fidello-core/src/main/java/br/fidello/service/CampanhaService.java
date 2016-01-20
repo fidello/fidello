@@ -33,12 +33,7 @@ public class CampanhaService {
 
 			campanhaDelegate.cadastrarCampanha(campanhaVO);
 
-			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers", "X-Requested-With")
-					.entity("").build();
-
-			
+			return Response.status(200).entity("").build();			
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();
 
@@ -56,10 +51,7 @@ public class CampanhaService {
 			
 			campanhaDelegate.pontuar(compra);
 
-			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers", "X-Requested-With")
-					.entity("").build();
+			return Response.status(200).entity("").build();
 
 			
 		} catch (Exception e) {
@@ -79,11 +71,7 @@ public class CampanhaService {
 			
 			Double pontos = campanhaDelegate.detalharPontosPorPessoa(idPessoa);
 
-			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers", "X-Requested-With")
-					.entity(pontos).build();
-
+			return Response.status(200).entity(pontos).build();
 			
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();

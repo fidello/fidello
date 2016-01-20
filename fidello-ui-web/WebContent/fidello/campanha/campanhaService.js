@@ -1,34 +1,34 @@
-(function() {
+(function () {
 
-	angular.module('fidello').factory('campanhaService', campanhaService);
+    angular.module('fidello').factory('campanhaService', campanhaService);
 
-	campanhaService.$inject = [ '$resource', '$timeout', '$http' ];
+    campanhaService.$inject = ['$resource', '$timeout', 'Contantes'];
 
-	function campanhaService($resource, $timeout, $http) {
+    function campanhaService($resource, $timeout, Constantes) {
 
-		var campanhaResource = $resource('http://www.fidello.com.br/fidello-core/rest/campanha', null, {
-			'save' : {
-				method : 'POST'
-			}
-		});
+        var campanhaResource = $resource(Constantes.urlResource + 'fidello-core/rest/campanha', null, {
+            'save': {
+                method: 'POST'
+            }
+        });
 
-		return {
-			cadastrarCampanha : cadastrarCampanha
+        return {
+            cadastrarCampanha: cadastrarCampanha
 
-		};
+        };
 
-		function cadastrarCampanha(campanha) {
+        function cadastrarCampanha(campanha) {
 
-			var resource = new campanhaResource(campanha);
+            var resource = new campanhaResource(campanha);
 
-			return resource.$save(function(resposta) {
-				return resposta;
-			}, function(error) {
-				return error;
-			});
+            return resource.$save(function (resposta) {
+                return resposta;
+            }, function (error) {
+                return error;
+            });
 
-		}
+        }
 
-	}
+    }
 
 })();

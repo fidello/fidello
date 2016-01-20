@@ -25,76 +25,63 @@ public class UsuarioService {
 	@Inject
 	UsuarioDelegate usuarioDelegate;
 
-	
 	@Inject
 	PessoaDelegate pessoaDelegate;
 
 	@GET
 	@Path("/")
 	public String teste() {
-		return "UsuarioService implantado com sucesso"; 
+		return "UsuarioService implantado com sucesso";
 	}
-	
+
 	@GET
 	@Path("/testeSalvar")
 	public Response salvarUsuarioTeste() {
 
 		try {
 			UsuarioVO usuarioVO = new UsuarioVO();
-			
+
 			usuarioVO.setDocumento("02546275100");
 			usuarioVO.setSenha("123");
 			usuarioVO.setEmail("gomes@gmail.com");
 			usuarioVO.setNome("Gomes");
-			
-			
+
 			usuarioDelegate.cadastrarUsuario(usuarioVO);
-			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers", "X-Requested-With")
-					.entity("Usuario Salvo com sucesso").build();
+			return Response.status(200).entity("Usuario Salvo com sucesso")
+					.build();
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();
 
 		}
 
 	}
-	
 
 	@GET
 	@Path("/pessoas")
 	public Response buscarPessoasFisicas() {
 		List<PessoaVO> pessoas = null;
 		try {
-			
-			
+
 			pessoas = pessoaDelegate.buscarPessoasFisicas();
 			return Response.status(200).entity(pessoas).build();
-		        			
+
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();
 
 		}
 
 	}
-	
-
 
 	@POST
 	@Path("/")
 	public Response salvarUsuario(UsuarioVO usuarioVO) {
 
 		try {
-			
-			
-			
+
 			usuarioDelegate.cadastrarUsuario(usuarioVO);
 
-			return Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")					
-					.entity("").build();
-			
-			
+			return Response.status(200).entity("").build();
+
 		} catch (Exception e) {
 			return Response.serverError().entity(e).build();
 
@@ -115,6 +102,5 @@ public class UsuarioService {
 		}
 
 	}
-	
-	
+
 }

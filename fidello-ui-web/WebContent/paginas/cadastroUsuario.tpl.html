@@ -1,49 +1,42 @@
+<md-card flex-gt-sm="20" flex-gt-md="20">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2><span>Cadastro</span></h2>
+        </div>
 
-<div role="content" layout="row" layout-align="center center" ng-controller="usuarioController as vm">
-	<md-card flex-gt-sm="90" flex-gt-md="80"> 
-		<md-card-content>
-			<md-card flex-gt-sm="20" flex-gt-md="20"> 
-				<md-toolbar>
-					<div class="md-toolbar-tools">
-						<h2><span>Cadastro</span></h2>
-					</div>
+    </md-toolbar>
+    <md-card-content>
+        <div layout="row">
+            <md-input-container>
+                <md-select ng-model="vm.usuario.tipoUsuario" ng-change="vm.mudarInputCadastro();">
+                    <md-option ng-repeat="tipo in vm.tiposUsuarioCadastro" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 1}}">
+                        {{tipo.textoTipoUsuario}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+                <label>{{vm.textoTipoUsuario}}</label>
+                <input type="text" ng-model="vm.usuario.documento">
+            </md-input-container>
+        </div>
 
-				</md-toolbar> 
-		<md-card-content> 
-		     <div layout="row">
-                 <md-input-container>
-	             	 <md-select ng-model="vm.usuario.tipoUsuario"  ng-change="vm.mudarInputCadastro();">
-	      			    <md-option  ng-repeat="tipo in vm.tiposUsuarioCadastro" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 1}}">
-	            			{{tipo.textoTipoUsuario}}
-	          			</md-option>
-	        		</md-select>                                                                               
-	        		</md-input-container>
-                    <md-input-container class="md-block" flex>
-                       <label>{{vm.textoTipoUsuario}}</label>
-                       <input type="text" ng-model="vm.usuario.documento">
-                 </md-input-container>
-             </div>  
-		
-			<md-input-container> 	
-				<label>Email</label> 
-				<input type="email" ng-model="vm.usuario.email"> 
-			</md-input-container> 
-			
-			<md-input-container>
-				<label>Nome</label> 
-				<input ng-model="vm.usuario.nome"> 
-			</md-input-container> 
-			
-			<md-input-container>
-				<label>Senha</label> 
-				<input ng-model="vm.usuario.senha" type="password">
-			</md-input-container> 
-			
-			<md-card-actions layout="row" layout-align="center center">			
-				<md-button class="md-raised md-primary" ng-click="vm.cadastrarUsuario()">Cadastrar</md-button>	
-			</md-card-actions> 
-	</md-card-content> 
-	</md-card>
-		</md-card-content>
-	</md-card>
-</div>
+        <md-input-container>
+            <label>Email</label>
+            <input type="email" ng-model="vm.usuario.email">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Nome</label>
+            <input ng-model="vm.usuario.nome">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Senha</label>
+            <input ng-model="vm.usuario.senha" type="password">
+        </md-input-container>
+
+        <md-card-actions layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary" ng-click="vm.cadastrarUsuario()">Cadastrar</md-button>
+        </md-card-actions>
+    </md-card-content>
+</md-card>

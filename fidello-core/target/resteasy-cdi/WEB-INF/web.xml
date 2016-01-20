@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.4">
+  <display-name>resteasy-cdi</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <context-param>
+    <param-name>resteasy.injector.factory</param-name>
+    <param-value>org.jboss.resteasy.cdi.CdiInjectorFactory</param-value>
+  </context-param>
+
+<listener>
+    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+  </listener>
+  <listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+  
+  
+  <servlet>
+    <servlet-name>RestServlet</servlet-name>
+    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/rest</param-value>
+  </context-param>
+
+  <context-param>
+		<param-name>javax.ws.rs.core.Application</param-name>
+		<param-value>br.fidello.service.MyApplication</param-value>
+	</context-param>	
+
+  <servlet-mapping>
+    <servlet-name>RestServlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+<!--   <filter> -->
+<!--     <filter-name>CORSFilter</filter-name> -->
+<!--     <filter-class>br.com.fidello.util.CORSFilter</filter-class> -->
+<!--   </filter> -->
+<!--   <filter-mapping> -->
+<!--     <filter-name>CORSFilter</filter-name> -->
+<!--     <url-pattern>/rest/*</url-pattern> -->
+<!--   </filter-mapping> -->
+</web-app>

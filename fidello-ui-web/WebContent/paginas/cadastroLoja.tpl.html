@@ -1,4 +1,4 @@
-<md-card flex-gt-sm="20" flex-gt-md="20"> 
+<md-card flex-gt-sm="20" flex-gt-md="20">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>
@@ -6,74 +6,70 @@
             </h2>
         </div>
 
-	</md-toolbar> 
-    
-    <md-card-content> 
+    </md-toolbar>
+
+    <md-card-content>
         <md-input-container>
-	        <label>Nome fantasia</label> 
+            <label>Nome fantasia</label>
             <input type="text" ng-model="vm.loja.nome">
-	    </md-input-container> 
-        
-        <md-input-container> 
-            <label>Logradouro</label> 
-            <input type="text" ng-model="vm.loja.endereco.logradouro"> 
+        </md-input-container>
+
+        <md-input-container>
+            <label>Logradouro</label>
+            <input type="text" ng-model="vm.loja.endereco.logradouro">
         </md-input-container>
 
 
-	   <div layout="row">
-		  <md-input-container flex> 
-              <label>Complemento</label>
-		      <input ng-model="vm.loja.endereco.complemento" type="text"> 
-          </md-input-container>
-
-		  <md-input-container> 
-              <label>Número</label> 
-              <input ng-model="vm.loja.endereco.numero" type="number"> 
-            </md-input-container>
-	   </div>
-	
-	   <md-input-container> 
-           <label>Bairro</label> 
-           <input ng-model="vm.loja.endereco.bairro" type="text">
-        </md-input-container>
-	
         <div layout="row">
-            <md-input-container> 
-                <label>CEP</label> 
-                <input ng-model="vm.loja.endereco.cep" type="text"/> 
+            <md-input-container flex>
+                <label>Complemento</label>
+                <input ng-model="vm.loja.endereco.complemento" type="text">
             </md-input-container>
 
-		    <md-input-container> 
-                <label>UF</label> 
+            <md-input-container>
+                <label>Número</label>
+                <input ng-model="vm.loja.endereco.numero" type="number">
+            </md-input-container>
+        </div>
+
+        <md-input-container>
+            <label>Bairro</label>
+            <input ng-model="vm.loja.endereco.bairro" type="text">
+        </md-input-container>
+
+        <div layout="row">
+            <md-input-container>
+                <label>CEP</label>
+                <input ng-model="vm.loja.endereco.cep" type="text" />
+            </md-input-container>
+
+            <md-input-container>
+                <label>UF</label>
                 <md-select ng-model="vm.estadoSelecionado" ng-change="vm.preencherCidades();">
                     <md-option ng-repeat="estado in vm.estados" value="{{estado}}">
-                        {{estado.sigla}} 
-                    </md-option> 
+                        {{estado.sigla}}
+                    </md-option>
                 </md-select>
             </md-input-container>
 
-		    <md-autocomplete md-input-name="autocompleteField" flex
-		    md-input-minlength="2" md-input-maxlength="18" md-no-cache="false"
-		    md-selected-item="vm.loja.endereco.cidade" md-search-text="vm.searchText"
-		    md-items="item in vm.querySearch(vm.searchText)" md-item-text="item"
-		    md-floating-label="Cidade"> 
-          <md-item-template>
-		          <span md-highlight-text="vm.searchText">{{item}}</span> </md-item-template>
-		  </md-autocomplete>
-	    </div>
-        
-        <md-input-container> 
-            <label>País</label> 
-            <input ng-model="vm.loja.endereco.pais" type="text"> 
-        </md-input-container>
-        
+            <md-autocomplete md-input-name="autocompleteField" flex md-input-minlength="2" md-input-maxlength="18" md-no-cache="false" md-selected-item="vm.loja.endereco.cidade" md-search-text="vm.searchText" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item" md-floating-label="Cidade">
+                <md-item-template>
+                    <span md-highlight-text="vm.searchText">{{item}}</span> </md-item-template>
+            </md-autocomplete>
+        </div>
+
         <md-input-container>
-	       <label>Telefone</label>
-            <input ng-model="vm.loja.telefone" type="text"> 
-        </md-input-container> 
-        
-        <md-card-actions layout="row" layout-align="center center"> 
+            <label>País</label>
+            <input ng-model="vm.loja.endereco.pais" type="text">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Telefone</label>
+            <input ng-model="vm.loja.telefone" type="text">
+        </md-input-container>
+
+        <md-card-actions layout="row" layout-align="center center">
             <md-button class="md-raised md-primary" ng-click="vm.cadastrarLoja()">Cadastrar</md-button>
-	    </md-card-actions> 
-    </md-card-content> 
-</md-card> 
+        </md-card-actions>
+    </md-card-content>
+</md-card>

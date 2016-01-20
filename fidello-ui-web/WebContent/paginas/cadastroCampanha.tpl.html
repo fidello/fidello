@@ -1,41 +1,41 @@
-<md-card flex-gt-sm="20" flex-gt-md="20"> 
+<md-card flex-gt-sm="20" flex-gt-md="20">
     <md-toolbar>
-	   <div class="md-toolbar-tools">
-		  <h2><span>Cadastrar nova campanha</span></h2>
-       </div>
+        <div class="md-toolbar-tools">
+            <h2><span>Cadastrar nova campanha</span></h2>
+        </div>
 
-	</md-toolbar> 
-	
-    <md-card-content> 		
-		<md-input-container> 	
-	       <label>Nome</label> 
-	       <input type="text" ng-model="vm.campanha.nome"> 
-        </md-input-container> 
-				
-		<div layout="row">
-		     	
-			<md-input-container>
-				<label>Taxa</label> 
-				<input ng-model="vm.campanha.taxa" type="number"> 
-			</md-input-container> 
-			
-		   	<md-input-container class="md-block" >
-                   <label>Validade</label>
-                   <input type="number" ng-model="vm.campanha.validade">
-             </md-input-container>
-        
+    </md-toolbar>
+
+    <md-card-content>
+        <md-input-container>
+            <label>Nome</label>
+            <input type="text" ng-model="vm.campanha.nome">
+        </md-input-container>
+
+        <div layout="row">
+
             <md-input-container>
-	          	 <md-select ng-model="vm.campanha.tipoValidade">
-                    <md-option  ng-repeat="tipo in vm.tiposValidade" value="{{tipo.codigoTipoValidade}}" ng-selected="{{tipo.codigoTipoValidade == 2}}">
-	            	  {{tipo.textoTipoValidade}}
-	          		</md-option>
-	             </md-select>                                                                               
-	       </md-input-container>
-                    
-        </div>  
-			
-		<md-card-actions layout="row" layout-align="center center">			
-		  <md-button class="md-raised md-primary" ng-click="vm.cadastrarCampanha();">Cadastrar</md-button>	
-        </md-card-actions> 
-	   </md-card-content> 
-	</md-card>
+                <label>Taxa</label>
+                <input ng-model="vm.campanha.taxa" type="number">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Validade</label>
+                <input type="number" ng-model="vm.campanha.validade">
+            </md-input-container>
+
+            <md-input-container>
+                <md-select ng-model="vm.campanha.tipoValidade">
+                    <md-option ng-repeat="tipo in vm.tiposValidade" value="{{tipo.codigoTipoValidade}}" ng-selected="{{tipo.codigoTipoValidade == 2}}">
+                        {{tipo.textoTipoValidade}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+        </div>
+
+        <md-card-actions layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary" ng-click="vm.cadastrarCampanha();">Cadastrar</md-button>
+        </md-card-actions>
+    </md-card-content>
+</md-card>

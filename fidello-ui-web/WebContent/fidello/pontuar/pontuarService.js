@@ -2,19 +2,18 @@
 
 	angular.module('fidello').factory('pontuarService', pontuarService);
 
-	pontuarService.$inject = [ '$resource', '$timeout', '$http' ];
+	pontuarService.$inject = [ '$resource', '$timeout', 'Contantes' ];
 
-	function pontuarService($resource, $timeout, $http) {
+	function pontuarService($resource, $timeout, Contantes) {
 
-		var pontuarResource = $resource('http://www.fidello.com.br/fidello-core/rest/pontuar', null, {
+		var pontuarResource = $resource(Contante.urlResource + '/fidello-core/rest/pontuar', null, {
 			'save' : {
-				method : 'POST'
+				method : 'JSONP'
 			}
 		});
 
 		return {
 			cadastrarpontuar : cadastrarpontuar
-
 		};
 
 		function cadastrarpontuar(pontuar) {
@@ -22,8 +21,7 @@
 			var resource = new pontuarResource(pontuar);
 
 			return resource.$save(function(resposta) {
-				
-				
+								
 				return resposta;
 			}, function(error) {
 				return error;

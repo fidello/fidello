@@ -1,36 +1,36 @@
-<md-card flex-gt-sm="20" flex-gt-md="20"> 
+<md-card flex-gt-sm="20" flex-gt-md="20">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>
-                <span>Login</span>
+                <span>Login <img src="http://lorempixel.com/400/400/food"/></span>
            </h2>
         </div>
     </md-toolbar>
-    
+
     <md-card-content>
         <div layout="row">
-	       <md-input-container> 
-               <md-select ng-model="vm.login.tipoUsuario" ng-change="vm.mudarInput();">
-	               <md-option ng-repeat="tipo in vm.tiposUsuarioLogin" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 3}}">
-	                   {{tipo.textoTipoUsuario}} 
-                   </md-option> 
-               </md-select> 
+            <md-input-container>
+                <md-select ng-model="vm.login.tipoUsuario" ng-change="vm.mudarInput();">
+                    <md-option ng-repeat="tipo in vm.tiposUsuarioLogin" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 3}}">
+                        {{tipo.textoTipoUsuario}}
+                    </md-option>
+                </md-select>
             </md-input-container>
-            
-	       <md-input-container class="md-block" flex>
-               <label>{{vm.textoTipoUsuario}}</label>
-	           <input type="text" ng-model="vm.login.documento">
-	       </md-input-container>
+
+            <md-input-container class="md-block" flex>
+                <label>{{vm.textoTipoUsuario}}</label>
+                <input type="text" ng-model="vm.login.documento">
+            </md-input-container>
         </div>
-        
-        <md-input-container> 
-            <label>Senha</label> 
+
+        <md-input-container>
+            <label>Senha</label>
             <input ng-model="vm.login.senha" type="password" required="required">
-        </md-input-container> 
-        
+        </md-input-container>
+
         <md-card-actions layout="row" layout-align="center center">
             <md-button class="md-raised md-primary" ng-click="vm.entrar()">Entrar</md-button>
-            <md-button class="md-raised md-primary" ng-click="vm.navegar('cadastroUsuario');">Cadastrar</md-button> 
-        </md-card-actions> 
-    </md-card-content> 
+            <md-button class="md-raised md-primary" ng-click="vm.navegar('cadastroUsuario');">Cadastrar</md-button>
+        </md-card-actions>
+    </md-card-content>
 </md-card>

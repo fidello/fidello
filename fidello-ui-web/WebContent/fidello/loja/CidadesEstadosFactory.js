@@ -1,16 +1,14 @@
 angular
-.module('fidello')
-.factory('CidadesEstadosFactory',CidadesEstadosFactory);
+    .module('fidello')
+    .factory('CidadesEstadosFactory', CidadesEstadosFactory);
 
 
-function CidadesEstadosFactory($http){
+function CidadesEstadosFactory($http) {
 
-   return {
-    getEstados:function(){
-            return $http.get('json/cidades-estado-brasil.json');                               
-       }
-   
-   };
+    return {
+        getEstados: function () {
+            return $http.get('json/cidades-estado-brasil.json');
+        }
+
+    };
 }
-
-

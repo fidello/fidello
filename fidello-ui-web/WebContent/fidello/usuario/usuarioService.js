@@ -1,70 +1,68 @@
-(function() {
+(function () {
 
-	angular.module('fidello').factory('usuarioService', usuarioService);
+    function usuarioService($resource, $timeout, $http, Contantes) {
 
-	usuarioService.$inject = [ '$resource', '$timeout', '$http' ];
+        var cadastroResource = $resource(Contantes.urlResource + '/fidello-core/rest/usuario/', null, {
+                'save': {
+                    method: 'JSONP'
+                }
+            }),
+            loginResource = $resource(Contantes.urlResource + '/fidello-core/rest/usuario/login', null, {
+                'save': {
+                    method: 'JSONP'
+                }
+            }),
+            buscarPessoasResource = $resource(Contantes.urlResource + '/fidello-core/rest/usuario/pessoas', null, {
+                'save': {
+                    method: 'JSONP'
+                }
+            }),
+            url = Contantes.urlResource + '/fidello-core/rest/usuario/pessoas';
 
-	function usuarioService($resource, $timeout, $http) {
+        return {
+            cadastrarUsuario: cadastrarUsuario,
+            login: login,
+            buscarPessoas: buscarPessoas
+        };
 
-		var cadastroResource = $resource('http://www.fidello.com.br/fidello-core/rest/usuario/', null, {
-			'save' : {
-				method : 'POST'
-			}
-		});
-		var loginResource = $resource('http://www.fidello.com.br/fidello-core/rest/usuario/login', null, {
-			'save' : {
-				method : 'POST'
-			}
-		});
-		var buscarPessoasResource = $resource('http://www.fidello.com.br/fidello-core/rest/usuario/pessoas', null, {
-			'save' : {
-				method : 'POST'
-			}
-		});
-		var url = 'http://www.fidello.com.br/fidello-core/rest/usuario/pessoas';
+        function cadastrarUsuario(usuario) {
 
-		return {
-			cadastrarUsuario : cadastrarUsuario,
-			login : login,
-			buscarPessoas : buscarPessoas
-		};
+            var resource = new cadastroResource(usuario);
 
-		function cadastrarUsuario(usuario) {
+            return resource.$save(function (resposta) {
+                return resposta;
+            }, function (error) {
+                return error;
+            });
 
-			var resource = new cadastroResource(usuario);
+        }
 
-			return resource.$save(function(resposta) {
-				return resposta;
-			}, function(error) {
-				return error;
-			});
+        function buscarPessoas() {
 
-		}
+            return $http({
+                method: 'GET',
+                url: url
+            }).then(function (resposta) {
+                return resposta.data;
+            }, function (error) {
+                return error;
+            });
 
-		function buscarPessoas() {
+        }
 
-		return 	$http({
-				method : 'GET',
-				url : url
-			}).then(function(resposta) {
-				return resposta.data;
-			}, function(error) {
-				return error;
-			});
+        function login(usuario) {
+            var resource = new loginResource(usuario);
 
-		}
+            return resource.$save(function (resposta) {
+                return resposta;
+            }, function (error) {
+                return error;
+            });
 
-		function login(usuario) {
-			var resource = new loginResource(usuario);
+        }
 
-			return resource.$save(function(resposta) {
-				return resposta;
-			}, function(error) {
-				return error;
-			});
+    }
 
-		}
-
-	}
-
+    angular.module('fidello').factory('usuarioService', usuarioService);
+    usuarioService.$inject = ['$resource', '$timeout', '$http', 'Contantes'];
 })();
