@@ -38,7 +38,6 @@ function usuarioController(usuarioService, $mdToast, $state, $localStorage, Cont
 
       ];
 
-    alert(Contantes.teste);
     vm.tiposUsuarioCadastro = [
         {
             codigoTipoUsuario: 1,

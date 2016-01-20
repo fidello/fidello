@@ -16,7 +16,7 @@
                 isArray: true
             }
         });
-        var lojaResource = $resource(Constantes.urlResource '/fidello-core/rest/loja', null, {
+        var lojaResource = $resource(Constantes.urlResource + '/fidello-core/rest/loja', null, {
             'save': {
                 method: 'JSONP'
             }
