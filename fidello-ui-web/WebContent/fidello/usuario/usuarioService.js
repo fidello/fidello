@@ -1,23 +1,23 @@
 (function () {
 
-    function usuarioService($resource, $timeout, $http, Contantes) {
+    function usuarioService($resource, $timeout, $http, Constantes) {
 
-        var cadastroResource = $resource(Contantes.urlResource + '/fidello-core/rest/usuario/', null, {
+        var cadastroResource = $resource(Constantes.urlResource + '/fidello-core/rest/usuario/', null, {
                 'save': {
-                    method: 'JSONP'
+                    method: 'POST'
                 }
             }),
-            loginResource = $resource(Contantes.urlResource + '/fidello-core/rest/usuario/login', null, {
+            loginResource = $resource(Constantes.urlResource +'/fidello-core/rest/usuario/login', null, {
                 'save': {
-                    method: 'JSONP'
+                    method: 'POST'
                 }
             }),
-            buscarPessoasResource = $resource(Contantes.urlResource + '/fidello-core/rest/usuario/pessoas', null, {
+            buscarPessoasResource = $resource(Constantes.urlResource + '/fidello-core/rest/usuario/pessoas', null, {
                 'save': {
-                    method: 'JSONP'
+                    method: 'POST'
                 }
             }),
-            url = Contantes.urlResource + '/fidello-core/rest/usuario/pessoas';
+            url = Constantes.urlResource + '/fidello-core/rest/usuario/pessoas';
 
         return {
             cadastrarUsuario: cadastrarUsuario,
@@ -52,7 +52,7 @@
 
         function login(usuario) {
             var resource = new loginResource(usuario);
-
+           
             return resource.$save(function (resposta) {
                 return resposta;
             }, function (error) {
@@ -64,5 +64,5 @@
     }
 
     angular.module('fidello').factory('usuarioService', usuarioService);
-    usuarioService.$inject = ['$resource', '$timeout', '$http', 'Contantes'];
+    usuarioService.$inject = ['$resource', '$timeout', '$http', 'Constantes'];
 })();

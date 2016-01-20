@@ -30,9 +30,6 @@ function menuController($mdSidenav, $state, $localStorage) {
     }
     ];
 
-    vm.navegar = function (pagina) {
-        $state.go(pagina);
-    }
 
 
 }

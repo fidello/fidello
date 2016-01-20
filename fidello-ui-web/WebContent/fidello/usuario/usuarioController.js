@@ -1,10 +1,15 @@
 angular.module('fidello').controller("usuarioController", usuarioController);
 
-usuarioController.$inject = ['usuarioService', '$mdToast', '$state', '$localStorage', 'Contantes'];
+usuarioController.$inject = ['usuarioService', '$localStorage', 'Constantes', 'Utils'];
 
-function usuarioController(usuarioService, $mdToast, $state, $localStorage, Contantes) {
+function usuarioController(usuarioService, $localStorage, Constantes, Utils) {
 
+    // Objetos //
     var vm = this;
+
+    vm.Utils = Utils;
+
+    vm.Constantes = Constantes;
 
     vm.$storage = $localStorage;
 
@@ -12,52 +17,27 @@ function usuarioController(usuarioService, $mdToast, $state, $localStorage, Cont
 
     vm.login = {};
 
+    vm.opcoesCadastro = Constantes.opcoesCadastro;
+
+    vm.opcoesLogin = Constantes.opcoesLogin;
+
+    // Métodos Públicos //
+
     vm.cadastrarUsuario = cadastrarUsuario;
 
     vm.entrar = entrar;
 
-    vm.navegar = navegar;
+    vm.atualizaLabelLogin = atualizaLabelLogin;
 
-    vm.mudarInput = mudarInput;
-
-    vm.mudarInputCadastro = mudarInputCadastro;
-
-    vm.tiposUsuarioLogin = [
-        {
-            codigoTipoUsuario: 1,
-            textoTipoUsuario: "CPF"
-      },
-        {
-            codigoTipoUsuario: 2,
-            textoTipoUsuario: "CNPJ"
-      },
-        {
-            codigoTipoUsuario: 3,
-            textoTipoUsuario: "E-mail"
-      }
-
-      ];
-
-    vm.tiposUsuarioCadastro = [
-        {
-            codigoTipoUsuario: 1,
-            textoTipoUsuario: "CPF"
-      },
-        {
-            codigoTipoUsuario: 2,
-            textoTipoUsuario: "CNPJ"
-      },
-      ];
+    vm.atualizaLabelCadastro = atualizaLabelCadastro;
 
 
 
-
-    // METODOS PUBLICOS
     function cadastrarUsuario() {
         usuarioService.cadastrarUsuario(vm.usuario).then(function (resposta) {
-            __mostrarMensagem("O cadastro foi realizado com sucesso");
+            Uils.mostrarMensagem("O cadastro foi realizado com sucesso");
         }, function (error) {
-            __mostrarMensagem("Não foi possivel realizar o cadastro. " + error.data.message);
+            Utils.mostrarMensagem("Não foi possivel realizar o cadastro. " + error.data.message);
         });
     }
 
@@ -65,27 +45,28 @@ function usuarioController(usuarioService, $mdToast, $state, $localStorage, Cont
 
         usuarioService.login(vm.login).then(function (resposta) {
             vm.$storage.currentUser = resposta;
-            __mostrarMensagem("Seja Bem vindo " + resposta.nome);
+            Utils.mostrarMensagem("Seja Bem vindo " + resposta.nome);
         }, function (error) {
-            __mostrarMensagem(error.data.message);
+            Utils.mostrarMensagem(error);
         });
 
     }
 
-    function mudarInput() {
-        vm.textoTipoUsuario = vm.tiposUsuarioLogin[vm.login.tipoUsuario - 1].textoTipoUsuario;
+    function atualizaLabelLogin() {
+
+        for (var i in vm.opcoesLogin) {
+            if (vm.opcoesLogin[i].codigoTipoUsuario == vm.login.tipoUsuario) {
+                vm.textoTipoUsuario = vm.opcoesLogin[i].textoTipoUsuario;
+                break;
+            }
+        }
+
+
     }
 
-    function mudarInputCadastro() {
-        vm.textoTipoUsuario = vm.tiposUsuarioCadastro[vm.usuario.tipoUsuario - 1].textoTipoUsuario;
+    function atualizaLabelCadastro() {
+        vm.textoTipoUsuario = JSON.parse(vm.usuario.tipoUsuario).textoTipoUsuario;
     }
 
-    function navegar(pagina) {
-        $state.go(pagina);
-    }
 
-    // METODOS PRIVADOS
-    function __mostrarMensagem(mensagem) {
-        $mdToast.show($mdToast.simple().content(mensagem).position("top right").hideDelay(3000));
-    }
 }

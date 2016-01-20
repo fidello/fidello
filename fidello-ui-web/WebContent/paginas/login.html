@@ -2,7 +2,7 @@
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>
-                <span>Login <img src="http://lorempixel.com/400/400/food"/></span>
+                <span>Login</span>
            </h2>
         </div>
     </md-toolbar>
@@ -10,9 +10,9 @@
     <md-card-content>
         <div layout="row">
             <md-input-container>
-                <md-select ng-model="vm.login.tipoUsuario" ng-change="vm.mudarInput();">
-                    <md-option ng-repeat="tipo in vm.tiposUsuarioLogin" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 3}}">
-                        {{tipo.textoTipoUsuario}}
+                <md-select ng-model="vm.login.tipoUsuario" ng-change="vm.atualizaLabelLogin();" aria-label="tipo de login">
+                    <md-option ng-repeat="opcao in vm.opcoesLogin" value="{{opcao.codigoTipoUsuario}}" ng-selected="{{opcao == vm.Constantes.opcoesLogin.Email}}">
+                        {{opcao.textoTipoUsuario}}
                     </md-option>
                 </md-select>
             </md-input-container>
@@ -30,7 +30,7 @@
 
         <md-card-actions layout="row" layout-align="center center">
             <md-button class="md-raised md-primary" ng-click="vm.entrar()">Entrar</md-button>
-            <md-button class="md-raised md-primary" ng-click="vm.navegar('cadastroUsuario');">Cadastrar</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.Utils.navegar('cadastroUsuario');">Cadastrar</md-button>
         </md-card-actions>
     </md-card-content>
 </md-card>

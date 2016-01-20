@@ -9,7 +9,7 @@
         <div layout="row">
             <md-input-container>
                 <md-select ng-model="vm.usuario.tipoUsuario" ng-change="vm.mudarInputCadastro();">
-                    <md-option ng-repeat="tipo in vm.tiposUsuarioCadastro" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 1}}">
+                    <md-option ng-repeat="tipo in vm.opcoesCadastro" value="{{tipo.codigoTipoUsuario}}" ng-selected="{{tipo.codigoTipoUsuario == 1}}">
                         {{tipo.textoTipoUsuario}}
                     </md-option>
                 </md-select>
